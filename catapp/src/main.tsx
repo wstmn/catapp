@@ -12,6 +12,7 @@ import {
 import Root from './routes/root.tsx';
 import HomePage from './pages/home-page/index.tsx';
 import ProfilePage from './pages/profile-page/index.tsx';
+import CatPage from './pages/profile-page/index.tsx';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <ProfilePage />
+  },
+  {
+    path: "/cat",
+    element: <CatPage />
   }
 ]);
 

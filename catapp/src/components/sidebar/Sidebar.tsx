@@ -35,10 +35,10 @@ return <div className='fixed flex top-0 z-20 h-max min-h-max'>
     <Login open={open}></Login>
 
     {/* Add more elements with reduced vertical spacing */}
-    <div className='bg-gray-600 hover:bg-gray-700 border-l-0 hover:border-l-4 border-white duration-150 p-3 text-center flex items-center mb-2 mt-2 ml-4 '>
+    <Link to={'http://localhost:5173/cat'} className='bg-gray-600 hover:bg-gray-700 border-l-0 hover:border-l-4 border-white duration-150 p-3 text-center flex items-center mb-2 mt-2 ml-4 '>
         <PlusIcon className='w-10 h-10 text-white mr-6' />
         <p className='text-white font-roboto font-thin'>{open ? 'Add custom cats' : ''}</p>
-    </div>
+    </Link>
 
 
 

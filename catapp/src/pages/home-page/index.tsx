@@ -120,8 +120,8 @@ const index = () => {
 
 
     return(
-        <div className='bg-red-100 max-h-max h-max'>
-          <div  className='bg-red-100 max-h-max h-max ml-24'>
+        <div className='bg-rose-50 max-h-max h-max'>
+          <div  className='bg-rose-50 max-h-max h-max ml-24'>
           {isLoading ? "grabbing cats" : ""}
     
         {originalCats && (
