@@ -1,7 +1,7 @@
 import {FC, useState} from 'react';
 import { UserIcon, StarIcon } from '@heroicons/react/24/solid';
 import toggleFavourite from '../toggles/toggleFavourite';
-import { State, cat } from '../App';
+import { State, cat } from '../pages/home-page';
 
 export interface Navbarprops  {
         favState: State;

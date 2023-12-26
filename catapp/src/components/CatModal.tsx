@@ -1,5 +1,6 @@
 import {FC} from 'react'
-import { cat } from '../App';
+import { cat } from '../pages/home-page';
+
 
 export interface CatModalprops  {
     cat: cat;

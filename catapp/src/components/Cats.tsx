@@ -1,8 +1,9 @@
 
 import { FC } from 'react';
 import '../css/index.css'
-import {cat }from '../App'
+
 import { useCopyToClipboard } from '@uidotdev/usehooks';
+import { cat } from '../pages/home-page';
 
 
 export interface catsProps  {
