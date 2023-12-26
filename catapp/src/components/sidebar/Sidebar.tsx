@@ -1,6 +1,7 @@
 import {FC, useState} from 'react';
-import { PlusIcon } from '@heroicons/react/24/solid';
+import { HomeIcon, PlusIcon } from '@heroicons/react/24/solid';
 import {Login} from './Login';
+import { Link } from 'react-router-dom';
 
 
 export interface Sidebarprops  {
@@ -25,6 +26,11 @@ return <div className='fixed flex top-0 z-20 h-max min-h-max'>
         className='absolute cursor-pointer rounded-full -right-3 top-9 border-2 border-gray-700 w-8 h-8'
         onClick={() => setOpen(!open)}
     />
+
+    <Link to={'http://localhost:5173/'} className='bg-gray-600 hover:bg-gray-700 border-l-0 hover:border-l-4 border-white duration-150 p-3 text-center flex items-center ml-4 mt-10'>
+        <HomeIcon className='w-10 h-10 text-white mr-6' />
+        <p className='text-white font-roboto font-thin'>{open ? 'cats' : ''}</p>
+    </Link>
 
     <Login open={open}></Login>
 

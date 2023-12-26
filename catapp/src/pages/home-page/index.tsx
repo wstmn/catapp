@@ -5,6 +5,8 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import { Cats } from '../../components/Cats';
 import CatModal from '../../components/CatModal';
 import Navbar from '../../components/Navbar';
+import CatsList from '../../components/CatsList';
+import { CakeIcon } from '@heroicons/react/24/solid';
 
 
 interface AppProps {
@@ -69,6 +71,7 @@ const index = () => {
     console.log("original cats set: " + catSearched)
   }
   
+   {/* api call */} 
   useMemo(() => {
     const getUsers = async () => {
       try {
@@ -93,6 +96,7 @@ const index = () => {
     getUsers();
   }, []);
   
+   {/* synchronizować koty */} 
   useEffect(() => {
     console.log("TRrigger useEffect")
     if(!originalCats){
@@ -103,6 +107,7 @@ const index = () => {
     setCats(catlist);
   },[favouriteState, originalCats, searchedCats])
   
+  {/* obejrzyj (oglądać) poszukiwanego kota */} 
   useEffect(() => {
     if(!searchedCats){
       setOriginalCats(originalCats)
@@ -112,10 +117,12 @@ const index = () => {
     const catlist = searchedCats.filter(obj => obj.favourite === true || favouriteState === 'non-star' );
     setCats(catlist);
   },[searchedCats])
+
+
     return(
         <div className='bg-red-100 max-h-max h-max'>
           <div  className='bg-red-100 max-h-max h-max ml-24'>
-          {isLoading ? "Loading..." : ""}
+          {isLoading ? "grabbing cats" : ""}
     
         {originalCats && (
           <Navbar favState={favouriteState} setFavState={setFavouriteState} cat={originalCats} onSearch={handleSearch}></Navbar>
@@ -125,10 +132,12 @@ const index = () => {
           {selectedCat && (
             <CatModal cat={selectedCat} onClose={handleClose} onFavourite={handleFavourite}/>
           )}
-    
-            {cats && cats?.map((cat) => {
-                return <Cats key={cat.id} catObj={cat} onOpen={handleOpen}/>
-            })}
+
+          
+          {cats && <CatsList cats={cats} handleOpen={handleOpen}/>}  {/* lista kotów */} 
+          
+
+
          </div>
           <Sidebar/>
     
