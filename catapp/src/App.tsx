@@ -1,6 +1,6 @@
 import {  BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/home-page";
-import CatPage from "./pages/home-page";
+import CatPage from "./pages/cat-page";
 import ProfilePage from "./pages/profile-page";
 
 
@@ -12,9 +12,10 @@ export const App = ({ }) => {
       <Routes>
         <Route path="" element={<HomePage />} />
         <Route path="cat" element={<CatPage />} />
-        <Route path="profile/:id" element={<ProfilePage />} />
+        <Route path="profile" element={<ProfilePage />} />
       </Routes>
     </BrowserRouter>
+    
   );
 };
 

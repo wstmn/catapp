@@ -4,7 +4,7 @@ import Sidebar from "../../components/sidebar/Sidebar"
 
 interface Props {}
 
-const CatPage = (props: Props) => {
+const ProfilePage = (props: Props) => {
     return(
         <div>
             <Sidebar />
@@ -13,4 +13,4 @@ const CatPage = (props: Props) => {
     )
 }
 
-export default CatPage 
+export default ProfilePage 

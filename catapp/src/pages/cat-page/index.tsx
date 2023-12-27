@@ -1,10 +1,13 @@
 import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/solid"
+import Sidebar from "../../components/sidebar/Sidebar"
 
 interface Props {}
 
 const CatPage = (props: Props) => {
     return(
+        
         <div>
+          <Sidebar />
         <div className='bg-gray-500 dark:bg-gray-700 border-gray-200 sticky top-0 z-10'>
           <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
             <div className="flex items-center">

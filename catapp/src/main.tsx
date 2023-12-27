@@ -9,10 +9,11 @@ import {
   RouterProvider, createBrowserRouter,
 } from "react-router-dom";
 
-import Root from './routes/root.tsx';
 import HomePage from './pages/home-page/index.tsx';
 import ProfilePage from './pages/profile-page/index.tsx';
-import CatPage from './pages/profile-page/index.tsx';
+import CatPage from './pages/cat-page/index.tsx';
+
+ 
 
 const router = createBrowserRouter([
   {
