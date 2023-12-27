@@ -1,6 +1,5 @@
 import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/solid";
 import { FC, useEffect, useState } from "react";
-import { SignIn } from "../googleSignIn/SignIn";
 import { User, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../googleSignIn/FirebaseConfig";
 
@@ -47,7 +46,6 @@ const Profile: FC = () => {
               {/* Add more user information as needed */}
             </div>
           </div>
-          <SignIn />
           <div className="flex items-center">
             {/* Add your ArrowLeftStartOnRectangleIcon component here */}
             <div className="flex">

@@ -1,4 +1,6 @@
-import { State } from "../App"
+import { State } from "../components/Home"
+
+
 
 function toggleFavourite(favouriteState:State, setFavouriteState:Function){
     if(favouriteState === "non-star"){

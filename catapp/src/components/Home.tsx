@@ -17,13 +17,9 @@ export type State = "star" | "non-star";
 
 
 const Home = () => {
-  const [user, setUser] = useState();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const isLoading: boolean = false
   const [cats, setCats] = useState<cat[]>();
   const [originalCats, setOriginalCats] = useState<cat[]>();
-  const [catBreeds, setCatBreeds] = useState<catBreeds[]>();
-  
-  const [catModalOpen, setcatModalOpen] = useState<boolean>(false);
   
   const [favouriteState, setFavouriteState] = useState<State>("non-star")
   

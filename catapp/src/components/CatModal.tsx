@@ -1,5 +1,5 @@
-import { FC, useEffect, useMemo, useState } from 'react'
-import useFetch, { cat, catImage, useCatApi } from '../hooks/useFetch';
+import { FC, useMemo, useState } from 'react'
+import { cat, catImage, useCatApi } from '../hooks/useFetch';
 
 
 

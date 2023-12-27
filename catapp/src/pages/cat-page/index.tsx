@@ -1,9 +1,7 @@
 import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/solid"
 import Sidebar from "../../components/sidebar/Sidebar"
 
-interface Props {}
-
-const CatPage = (props: Props) => {
+const CatPage = () => {
     return(
         
         <div>

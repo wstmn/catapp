@@ -1,10 +1,7 @@
-import Footer from "../../components/Footer"
 import Profile from "../../components/Profile"
 import Sidebar from "../../components/sidebar/Sidebar"
 
-interface Props {}
-
-const ProfilePage = (props: Props) => {
+const ProfilePage = () => {
     return(
         <div>
             <Sidebar />

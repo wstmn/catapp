@@ -53,6 +53,7 @@ export function useCatApi() {
       console.log(data + "------------------------");
     } catch (error) {
       console.log(error);
+      console.log(isPending)
     } finally {
       setIsPending(false);
     }

@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { UserIcon, StarIcon } from '@heroicons/react/24/solid';
+import { StarIcon } from '@heroicons/react/24/solid';
 import toggleFavourite from '../toggles/toggleFavourite';
 import { State } from '../components/Home';
 import { cat } from '../hooks/useFetch';
