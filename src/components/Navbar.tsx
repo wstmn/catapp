@@ -1,29 +1,30 @@
-import { FC, useState } from 'react';
+import { FC, useContext, useState } from 'react';
 import { StarIcon } from '@heroicons/react/24/solid';
 import toggleFavourite from '../toggles/toggleFavourite';
-import { State } from '../components/Home';
+import { CatsContext, State } from '../components/Home';
 import { cat } from '../hooks/useFetch';
 
 export interface Navbarprops {
         favState: State;
         setFavState: Function;
-        cat: cat[];
         onSearch: (cat: cat[]) => void;
 }
 
 
 
 
-export const Navbar: FC<Navbarprops> = ({ favState, setFavState, cat, onSearch }) => {
+export const Navbar: FC<Navbarprops> = ({ favState, setFavState, onSearch }) => {
+
+        const { originalCats} = useContext(CatsContext);
 
         const [search, setSearch] = useState<string>("");
 
 
         function searchCats(onSearch: Function) {
-                var searchedCats: cat[] = cat;
+                var searchedCats: cat[] | undefined = originalCats;
                 if (!search) {
                         console.log("search 0")
-                } else {
+                } else if(searchedCats != undefined) {
                         const filteredCats = searchedCats.filter((cat) =>
                                 cat.breed.toLowerCase().includes(search.toLowerCase())
                         );

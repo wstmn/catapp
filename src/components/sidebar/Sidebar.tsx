@@ -19,9 +19,11 @@ export const Sidebar: FC<Sidebarprops> = ({ }) => {
 
             <img
                 src='./src/assets/cat.png'
-                className={`text-white ${open ? 'w-24 h-24' : 'w-16 h-16'} ${open ? 'ml-20' : 'ml-3'} mt-1 duration-300 invert`} />
+                className={`text-white ${open ? 'w-24 h-24' : 'w-16 h-16'} ${open ? 'ml-20' : 'ml-3'} mt-1 duration-300 invert`}
+             />
 
-            <img src='./src/assets/control.png'
+            <img 
+                src='./src/assets/control.png'
                 className='absolute cursor-pointer rounded-full -right-3 top-9 border-2 border-gray-700 w-8 h-8'
                 onClick={() => setOpen(!open)}
             />
@@ -31,15 +33,13 @@ export const Sidebar: FC<Sidebarprops> = ({ }) => {
                 <p className='text-white font-roboto font-thin'>{open ? 'cats' : ''}</p>
             </Link>
 
-            <Login open={open}></Login>
+            <Login open={open} />
 
             {/* Add more elements with reduced vertical spacing */}
             <Link to={'http://localhost:5173/cat'} className='bg-slate-800 hover:bg-slate-700 border-l-0 hover:border-l-4 border-white duration-150 p-3 text-center flex items-center mb-2 mt-2 ml-4 '>
                 <PlusIcon className='w-10 h-10 text-white mr-6' />
                 <p className='text-white font-roboto font-thin'>{open ? 'Add custom cats' : ''}</p>
             </Link>
-
-
 
             {/* Add more elements here */}
         </div>

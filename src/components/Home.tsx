@@ -6,125 +6,131 @@ import Sidebar from "./sidebar/Sidebar";
 import CatsList from "./CatsList";
 import Footer from "./Footer";
 import { cat, useCatApi } from "../hooks/useFetch";
+import React, { createContext } from 'react';
 
-
-export interface catBreeds {
-
-}
-
+export const CatsContext = createContext<CatsContextType>({
+  originalCats: [], // An empty array as the default value for originalCats
+  setOriginalCats: () => {} // A no-op function as the default for setOriginalCats
+});
 export type State = "star" | "non-star";
 
-
+type CatsContextType = {
+  originalCats: cat[] | undefined;
+  setOriginalCats: React.Dispatch<React.SetStateAction<cat[] | undefined>>;
+};
 
 const Home = () => {
   const isLoading: boolean = false
   const [cats, setCats] = useState<cat[]>();
   const [originalCats, setOriginalCats] = useState<cat[]>();
-  
+
   const [favouriteState, setFavouriteState] = useState<State>("non-star")
-  
+
   const [selectedCat, setSelectedCat] = useState<cat>();
-  
-  const [searchedCats, setSearchedCats] = useState<cat[]>(  );
-  
-  
-  function handleFavourite(id:string):void{
+
+  const [searchedCats, setSearchedCats] = useState<cat[]>();
+
+
+
+
+  function handleFavourite(id: string): void {
     console.log('handleFavourite for catId =' + id);
     originalCats?.map((cat) => {
-        if(cat.id === id){
-          console.log(cat.favourite ? cat.breed +  ' has been removed from favourites!' : cat.breed + ' has been added to favourites!');
-          cat.favourite = !cat.favourite;
-        }        
+      if (cat.id === id) {
+        console.log(cat.favourite ? cat.breed + ' has been removed from favourites!' : cat.breed + ' has been added to favourites!');
+        cat.favourite = !cat.favourite;
+      }
     });
-  
-    setOriginalCats(originalCats); 
-    console.log("setOriginalCat")   
+
+    setOriginalCats(originalCats);
+    console.log("setOriginalCat")
   }
-  
-  function handleClose():void{
-    setSelectedCat(undefined) 
+
+  function handleClose(): void {
+    setSelectedCat(undefined)
     console.log("closed")
   }
-  
-  function handleOpen(catObj:cat):void{
+
+  function handleOpen(catObj: cat): void {
     setSelectedCat(catObj)
-    console.log("open" , catObj)
+    console.log("open", catObj)
   };
-  
-  function handleSearch(catSearched:cat[]):void{
-    if(!catSearched){setSearchedCats(cats)}
+
+  function handleSearch(catSearched: cat[]): void {
+    if (!catSearched) { setSearchedCats(cats) }
     setSearchedCats(catSearched)
     console.log("original cats set: " + catSearched)
   }
-  
+
   const { getCats } = useCatApi();
 
   useMemo(() => {
     const fetchData = async () => {
-        try {
-            const data: cat[] = await getCats();
-            setCats(data);
-            setOriginalCats(data);
-        } catch (error) {
-            // Handle errors if needed
-            console.error('Error fetching data:', error);
-        }
+      try {
+        const data: cat[] = await getCats();
+        setCats(data);
+        setOriginalCats(data);
+      } catch (error) {
+        // Handle errors if needed
+        console.error('Error fetching data:', error);
+      }
     };
 
     fetchData();
-}, []);
+  }, []);
 
-   {/* synchronizować koty */} 
+  {/* synchronizować koty */ }
   useEffect(() => {
     console.log("TRrigger useEffect")
-    if(!originalCats){
+    if (!originalCats) {
       return;
     }
-    const catlist = originalCats.filter(obj => obj.favourite === true || favouriteState === 'non-star' );
+    const catlist = originalCats.filter(obj => obj.favourite === true || favouriteState === 'non-star');
     console.log("Set cat list", catlist);
     setCats(catlist);
-  },[favouriteState, originalCats, searchedCats])
-  
-  {/* obejrzyj (oglądać) poszukiwanego kota */} 
+    
+  }, [favouriteState, originalCats, searchedCats])
+
+  {/* obejrzyj (oglądać) poszukiwanego kota */ }
   useEffect(() => {
-    if(!searchedCats){
+    if (!searchedCats) {
       setOriginalCats(originalCats)
       console.log("no search cats")
       return
     }
-    const catlist = searchedCats.filter(obj => obj.favourite === true || favouriteState === 'non-star' );
+    const catlist = searchedCats.filter(obj => obj.favourite === true || favouriteState === 'non-star');
     setCats(catlist);
-  },[searchedCats])
+  }, [searchedCats])
 
 
-    return(
-        <div className='bg-gray-900 max-h-max h-max'>
-          <div  className='bg-gray-900 max-h-max h-max ml-24'>
-          {isLoading ? "grabbing cats" : ""}
-    
+  return (
+    <CatsContext.Provider value={{ originalCats, setOriginalCats }}>
+    <div className='bg-gray-900 max-h-max h-max'>
+      <div className='bg-gray-900 max-h-max h-max ml-24'>
+        {isLoading ? "grabbing cats" : ""}
+
         {originalCats && (
-          <Navbar favState={favouriteState} setFavState={setFavouriteState} cat={originalCats} onSearch={handleSearch}></Navbar>
+          <Navbar favState={favouriteState} setFavState={setFavouriteState} onSearch={handleSearch}></Navbar>
         )}
-    
-    
-          {selectedCat && (
-            <CatModal cat={selectedCat} onClose={handleClose} onFavourite={handleFavourite}/>
-          )}
-
-          
-          {cats && <CatsList cats={cats} handleOpen={handleOpen}/>}  {/* lista kotów */} 
-          
 
 
-         </div>
-          <Sidebar />
-    
-          <Footer></Footer>
-          
-    
-        </div>
-        
-      );
-    };
+        {selectedCat && (
+          <CatModal cat={selectedCat} onClose={handleClose} onFavourite={handleFavourite} />
+        )}
+
+
+        {cats && <CatsList cats={cats} handleOpen={handleOpen} />}  {/* lista kotów */}
+
+      </div>
+      <Sidebar />
+
+      <Footer></Footer>
+
+
+    </div>
+    </CatsContext.Provider>
+
+  );
+};
 
 export default Home

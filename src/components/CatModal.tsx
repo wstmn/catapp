@@ -1,5 +1,5 @@
 import { FC, useMemo, useState } from 'react'
-import { cat, catImage, useCatApi } from '../hooks/useFetch';
+import useFetch ,{ cat, catImage, useCatApi } from '../hooks/useFetch';
 
 
 
@@ -29,17 +29,16 @@ export const CatModal: FC<CatModalprops> = ({ cat, onClose, onFavourite }) => {
         };
 
         fetchData(cat.id)
-    }, [CatModal])
+    }, [cat.id])
 
     return <div onClick={onClose} className='fixed z-10 inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center'>
 
-        <div className='bg-slate-900 text-center p-10 font-roboto border-white border-4 rounded max-w-96'>
+        <div className='bg-slate-900 text-center p-10 font-roboto border-white border-4 rounded max-w-xl max-h-xl'>
 
             <p className='p-1 text-white bg-slate-900 hover:brightness-90 rounded-2xl'>Breed: {cat.breed ? cat.breed : "No Data"}</p>
             <p className='p-1 text-white bg-slate-900 hover:brightness-90 rounded-2xl'>Country: {cat.country ? cat.country : "No Data"}</p>
-            <p className='p-1 text-white bg-slate-900 hover:brightness-90 rounded-2xl'>Adaptability: {cat.adaptability ? cat.adaptability : "No Data"}</p>
             <p className='p-1 text-white bg-slate-900 hover:brightness-90 rounded-2xl'>Life Span: {cat.lifeSpan ? cat.lifeSpan : "No Data"}</p>
-            <img src={catImage?.imageURL} className='w-50 h-50 border-2 border-gray-500' />
+            <img src={catImage?.imageURL} className='max-w-l border-2 border-gray-500' />
             <p className='p-1 text-white bg-slate-900 hover:brightness-90 rounded-2xl mx-50 font-thin'>{cat.description}</p>
 
             <button onClick={() => onFavourite && onFavourite(cat.id)} className='mx-100 cursor-pointer rounded-2xl invert w-10 h-10' > {cat.favourite ? "⭐" : "✰"}</button>

@@ -25,7 +25,7 @@ export interface catImage {
 
 export function useCatApi() {
 
-  const baseURL = 'https://api.thecatapi.com/v1/';
+  const baseURL:string = 'https://api.thecatapi.com/v1/';
   const [isPending, setIsPending] = useState<boolean>(false);
 
   const getCats = async (): Promise<cat[]> => {
@@ -37,7 +37,7 @@ export function useCatApi() {
       );
       data = response.data;
 
-      data = data.map((catData: any) => ({
+      data = data.map((catData:any) => ({
         breed: catData.name,
         country: catData.origin,
         origin: catData.origin,

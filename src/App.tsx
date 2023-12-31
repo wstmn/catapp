@@ -6,7 +6,6 @@ import ProfilePage from "./pages/profile-page";
 
 
 export const App = ({ }) => {
-
   return(
     <BrowserRouter>
       <Routes>
